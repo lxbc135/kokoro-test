@@ -1,6 +1,6 @@
 # 1️⃣ Install kokoro
 # !pip install -q kokoro>=0.9.4 soundfile
-# 2️⃣ Install espeak, used for English OOD fallback and some non-English languages
+# 2️⃣ Install espeak, used for English OOD (Out-Of-Domain) fallback and some non-English languages
 # !apt-get -qq -y install espeak-ng > /dev/null 2>&1
 
 # 3️⃣ Initalize a pipeline
@@ -16,7 +16,9 @@ import torch
 # 🇯🇵 'j' => Japanese: pip install misaki[ja]
 # 🇧🇷 'p' => Brazilian Portuguese pt-br
 # 🇨🇳 'z' => Mandarin Chinese: pip install misaki[zh]
+# pipeline = KPipeline(lang_code='a') # <= make sure lang_code matches voice, reference above.
 pipeline = KPipeline(lang_code='a') # <= make sure lang_code matches voice, reference above.
+# pipeline = KPipeline(lang_code='z') # <= make sure lang_code matches voice, reference above.
 
 # This text is for demonstration purposes only, unseen during training
 text = '''
@@ -37,9 +39,11 @@ These were to have an enormous impact, not only because they were associated wit
 # text = 'Elabora relatórios de acompanhamento cronológico para as diferentes unidades do Departamento que propõem contratos.'
 
 # 4️⃣ Generate, display, and save audio files in a loop.
-generator = pipeline(
-    text, voice='af_heart', # <= change voice here
-    speed=1, split_pattern=r'\n+'
+generator = pipeline(text,
+    voice='af_heart', # <= change voice here
+    # voice='zf_xiaobei', # <= change voice here
+    speed=1,
+    split_pattern=r'\n+'
 )
 # Alternatively, load voice tensor directly:
 # voice_tensor = torch.load('path/to/voice.pt', weights_only=True)
