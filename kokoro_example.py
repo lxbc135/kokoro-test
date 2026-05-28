@@ -1,6 +1,10 @@
-# 1️⃣ Install kokoro
+# For `display`:
+# pip install ipywidgets
+#
+# Install kokoro:
 # !pip install -q kokoro>=0.9.4 soundfile
-# 2️⃣ Install espeak, used for English OOD (Out-Of-Domain) fallback and some non-English languages
+#
+# Install espeak, used for English OOD (Out-Of-Domain) fallback and some non-English languages
 # !apt-get -qq -y install espeak-ng > /dev/null 2>&1
 
 # 3️⃣ Initalize a pipeline
